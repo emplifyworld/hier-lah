@@ -16,7 +16,7 @@ export default async function Home() {
 
   const { data: users } = await supabase
     .from("users")
-    .select("id, name")
+    .select("id, name, payment_status")
     .order("name");
 
   // Group visits by city

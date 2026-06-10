@@ -1,17 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
 
-interface User { id: string; name: string }
+interface User { id: string; name: string; payment_status: string }
 
 export default function DemoUserPicker({ users }: { users: User[] }) {
   const [selected, setSelected] = useState<string>("");
 
   useEffect(() => {
     const saved = localStorage.getItem("demo_user_id");
-    if (saved) setSelected(saved);
-    else if (users.length > 0) {
-      setSelected(users[0].id);
-      localStorage.setItem("demo_user_id", users[0].id);
+    if (saved && users.find((u) => u.id === saved)) {
+      setSelected(saved);
+    } else {
+      // Default to first FREE user so the payment gate is demonstrable
+      const freeUser = users.find((u) => u.payment_status === "free") ?? users[0];
+      if (freeUser) {
+        setSelected(freeUser.id);
+        localStorage.setItem("demo_user_id", freeUser.id);
+      }
     }
   }, [users]);
 
@@ -29,7 +34,9 @@ export default function DemoUserPicker({ users }: { users: User[] }) {
         className="text-sm border border-indigo-300 rounded px-2 py-1 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
       >
         {users.map((u) => (
-          <option key={u.id} value={u.id}>{u.name}</option>
+          <option key={u.id} value={u.id}>
+            {u.name} ({u.payment_status === "paid" ? "✓ paid" : "free – 3 request limit"})
+          </option>
         ))}
       </select>
       <span className="text-xs text-indigo-500">(demo mode — no login required)</span>

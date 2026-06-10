@@ -38,11 +38,11 @@ export async function POST(req: NextRequest) {
     .single();
 
   if (user?.payment_status === "free") {
-    const { count } = await supabase
+    const { data: sentRows } = await supabase
       .from("connection_requests")
-      .select("id", { count: "exact", head: true })
+      .select("id")
       .eq("sender_id", sender_id);
-    if ((count ?? 0) >= 3) {
+    if ((sentRows?.length ?? 0) >= 3) {
       return NextResponse.json({ error: "FREE_LIMIT_REACHED" }, { status: 402 });
     }
   }
