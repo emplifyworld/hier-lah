@@ -1,4 +1,4 @@
-# Product Requirements: Are You Here
+# Product Requirements: HierLah
 
 ## Problem
 LinkedIn users visiting a city have no private way to discover and coordinate meet-ups with others who'll be there. Posting publicly is awkward; not everyone wants to broadcast travel plans. Users often only find free time once they arrive.
