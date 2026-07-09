@@ -51,6 +51,28 @@ export default async function Home() {
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-8">
 
+      <div className="bg-white border border-gray-200 rounded-xl p-5">
+        <h2 className="text-sm font-semibold text-gray-900 mb-3">How it works</h2>
+        <ol className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          <li className="flex items-start gap-2.5">
+            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">1</span>
+            <span className="text-sm text-gray-600">Pick your name below — no signup needed</span>
+          </li>
+          <li className="flex items-start gap-2.5">
+            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+            <span className="text-sm text-gray-600">Add your upcoming trip</span>
+          </li>
+          <li className="flex items-start gap-2.5">
+            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">3</span>
+            <span className="text-sm text-gray-600">Browse who else is visiting that city</span>
+          </li>
+          <li className="flex items-start gap-2.5">
+            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">4</span>
+            <span className="text-sm text-gray-600">Send a private request to connect</span>
+          </li>
+        </ol>
+      </div>
+
       <DemoUserPicker users={users ?? []} />
 
       <AddVisitForm />
